@@ -8,6 +8,8 @@ const { decodeUserFromToken, checkAuth } = middleware;
 
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken);
+router.get("/", postsCtrl.index);
+router.get("/:id", postsCtrl.show);
 router.post("/", postsCtrl.create);
 
 module.exports = router;
