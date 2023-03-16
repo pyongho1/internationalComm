@@ -31,6 +31,18 @@ const show = async (req, res) => {
   }
 };
 
+const update = async (req, res) => {
+  try {
+    const post = await Post.findByPk(req.params.id);
+    post.set(req.body);
+    await post.save();
+    res.status(200).json(post);
+  } catch (error) {
+    res.status(500).json(error);
+    console.log(error);
+  }
+};
+
 const deletePost = async (req, res) => {
   try {
     const post = await Post.findByPk(req.params.id);
@@ -47,4 +59,5 @@ module.exports = {
   show,
   index,
   delete: deletePost,
+  update,
 };
